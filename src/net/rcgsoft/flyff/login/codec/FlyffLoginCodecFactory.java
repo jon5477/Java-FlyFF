@@ -15,21 +15,23 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.rcgsoft.flyff.main;
+package net.rcgsoft.flyff.login.codec;
 
-public final class MainServer {
-	private static final MainServer INSTANCE = new MainServer();
+import org.apache.mina.core.session.IoSession;
+import org.apache.mina.filter.codec.ProtocolCodecFactory;
+import org.apache.mina.filter.codec.ProtocolDecoder;
+import org.apache.mina.filter.codec.ProtocolEncoder;
 
-	private MainServer() {
-		// singleton
-	}
-
-	public static final MainServer getInstance() {
-		return INSTANCE;
-	}
-
-	public static final void main(String[] args) {
+public final class FlyffLoginCodecFactory implements ProtocolCodecFactory {
+	@Override
+	public ProtocolDecoder getDecoder(IoSession arg0) throws Exception {
 		// TODO Auto-generated method stub
-		
+		return null;
+	}
+
+	@Override
+	public ProtocolEncoder getEncoder(IoSession arg0) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -15,21 +15,33 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.rcgsoft.flyff.main;
+package net.rcgsoft.flyff.login.codec;
 
-public final class MainServer {
-	private static final MainServer INSTANCE = new MainServer();
+import org.apache.mina.core.session.IoSession;
+import org.apache.mina.filter.codec.ProtocolEncoder;
+import org.apache.mina.filter.codec.ProtocolEncoderOutput;
 
-	private MainServer() {
-		// singleton
-	}
+public final class FlyffLoginPacketEncoder implements ProtocolEncoder {
+	/*
+	 * Information retrieved from:
+	 * http://forum.ragezone.com/f457/flyff-packet-breakdown-488888/
+	 */
 
-	public static final MainServer getInstance() {
-		return INSTANCE;
-	}
-
-	public static final void main(String[] args) {
+	@Override
+	public void dispose(IoSession session) throws Exception {
 		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void encode(IoSession session, Object msg, ProtocolEncoderOutput out) throws Exception {
+		// TODO Auto-generated method stub
+		// Start packet with 5E
+		// Include length hash [int]
+		// Include packet length [int]
+		// Include data hash [int]
+		// Command (no clue) [int]
+		// Append existing data
 		
 	}
 }
