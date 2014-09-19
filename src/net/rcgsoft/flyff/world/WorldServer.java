@@ -16,16 +16,16 @@
  *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.rcgsoft.flyff.main;
+package net.rcgsoft.flyff.world;
 
-public final class MainServer {
-	private static final MainServer INSTANCE = new MainServer();
+public final class WorldServer {
+	private static final WorldServer INSTANCE = new WorldServer();
 
-	private MainServer() {
+	private WorldServer() {
 		// singleton
 	}
 
-	public static final MainServer getInstance() {
+	public static final WorldServer getInstance() {
 		return INSTANCE;
 	}
 
