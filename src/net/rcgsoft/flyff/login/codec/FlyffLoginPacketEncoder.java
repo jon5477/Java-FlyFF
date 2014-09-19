@@ -1,5 +1,5 @@
 /*
- *    This file is part of Java-FlyFF, a FlyFF Java based emulator.
+ *    This file is part of Java-FlyFF, a Java based FlyFF emulator.
  *    Copyright (C) 2014 Jon Huang <project54_jon@live.com>
  *
  *    This program is free software: you can redistribute it and/or modify
@@ -22,11 +22,15 @@ import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolEncoder;
 import org.apache.mina.filter.codec.ProtocolEncoderOutput;
 
-public final class FlyffLoginPacketEncoder implements ProtocolEncoder {
+final class FlyffLoginPacketEncoder implements ProtocolEncoder {
 	/*
 	 * Information retrieved from:
 	 * http://forum.ragezone.com/f457/flyff-packet-breakdown-488888/
 	 */
+
+	FlyffLoginPacketEncoder() {
+		// keep package-private
+	}
 
 	@Override
 	public void dispose(IoSession session) throws Exception {

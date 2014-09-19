@@ -1,5 +1,5 @@
 /*
- *    This file is part of Java-FlyFF, a FlyFF Java based emulator.
+ *    This file is part of Java-FlyFF, a Java based FlyFF emulator.
  *    Copyright (C) 2014 Jon Huang <project54_jon@live.com>
  *
  *    This program is free software: you can redistribute it and/or modify
@@ -24,15 +24,16 @@ import org.apache.mina.filter.codec.ProtocolDecoder;
 import org.apache.mina.filter.codec.ProtocolEncoder;
 
 public final class FlyffLoginCodecFactory implements ProtocolCodecFactory {
+	private static final FlyffLoginPacketEncoder ENCODER = new FlyffLoginPacketEncoder();
+	private static final FlyffLoginPacketDecoder DECODER = new FlyffLoginPacketDecoder();
+
 	@Override
-	public ProtocolDecoder getDecoder(IoSession arg0) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public final ProtocolDecoder getDecoder(IoSession session) throws Exception {
+		return DECODER;
 	}
 
 	@Override
-	public ProtocolEncoder getEncoder(IoSession arg0) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public final ProtocolEncoder getEncoder(IoSession session) throws Exception {
+		return ENCODER;
 	}
 }

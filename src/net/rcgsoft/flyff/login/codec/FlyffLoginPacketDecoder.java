@@ -1,5 +1,5 @@
 /*
- *    This file is part of Java-FlyFF, a FlyFF Java based emulator.
+ *    This file is part of Java-FlyFF, a Java based FlyFF emulator.
  *    Copyright (C) 2014 Jon Huang <project54_jon@live.com>
  *
  *    This program is free software: you can redistribute it and/or modify
@@ -23,11 +23,15 @@ import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.CumulativeProtocolDecoder;
 import org.apache.mina.filter.codec.ProtocolDecoderOutput;
 
-public final class FlyffLoginPacketDecoder extends CumulativeProtocolDecoder {
+final class FlyffLoginPacketDecoder extends CumulativeProtocolDecoder {
 	/*
 	 * Information retrieved from:
 	 * http://forum.ragezone.com/f457/flyff-packet-breakdown-488888/
 	 */
+
+	FlyffLoginPacketDecoder() {
+		// keep package-private
+	}
 
 	@Override
 	protected boolean doDecode(IoSession session, IoBuffer in, ProtocolDecoderOutput out) throws Exception {

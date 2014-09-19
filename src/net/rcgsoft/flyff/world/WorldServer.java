@@ -1,5 +1,5 @@
 /*
- *    This file is part of Java-FlyFF, a FlyFF Java based emulator.
+ *    This file is part of Java-FlyFF, a Java based FlyFF emulator.
  *    Copyright (C) 2014 Jon Huang <project54_jon@live.com>
  *
  *    This program is free software: you can redistribute it and/or modify
