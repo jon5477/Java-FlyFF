@@ -18,14 +18,14 @@
 
 package net.rcgsoft.flyff.login;
 
-import java.io.IOException;
-import java.net.InetSocketAddress;
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
+import io.netty.channel.EventLoopGroup;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
 
-import net.rcgsoft.flyff.login.codec.FlyffLoginCodecFactory;
-
-import org.apache.mina.filter.codec.ProtocolCodecFilter;
-import org.apache.mina.transport.socket.SocketAcceptor;
-import org.apache.mina.transport.socket.nio.NioSocketAcceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,7 +33,6 @@ public final class LoginServer {
 	private static final LoginServer INSTANCE = new LoginServer();
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginServer.class);
 	private static final int LOGIN_PORT = 24000; // I hope this is correct.
-	private static SocketAcceptor acceptor;
 
 	private LoginServer() {
 	}
@@ -43,18 +42,27 @@ public final class LoginServer {
 	}
 
 	public static final void main(String[] args) {
-		// TODO Auto-generated method stub
-		acceptor = new NioSocketAcceptor();
-		acceptor.getSessionConfig().setTcpNoDelay(true); // Disable Nagle's Algorithm
-		// Close all connections when the SocketAcceptor is deactivated.
-		acceptor.setCloseOnDeactivation(true);
-		acceptor.getFilterChain().addFirst("codec", new ProtocolCodecFilter(new FlyffLoginCodecFactory()));
-		acceptor.setHandler(FlyffLoginServerHandler.getInstance());
+		EventLoopGroup bossGroup = new NioEventLoopGroup();
+		EventLoopGroup workerGroup = new NioEventLoopGroup();
 		try {
-			acceptor.bind(new InetSocketAddress(LOGIN_PORT));
-			LOGGER.info("Bound to port {}.", LOGIN_PORT);
-		} catch (IOException e) {
-			LOGGER.error(e.getLocalizedMessage(), e);
+			ServerBootstrap b = new ServerBootstrap();
+			b.group(bossGroup, workerGroup)
+			.channel(NioServerSocketChannel.class)
+			.childHandler(new ChannelInitializer<SocketChannel>() {
+				@Override
+				public void initChannel(SocketChannel ch) throws Exception {
+					ch.pipeline().addLast(FlyffLoginServerHandler.getInstance());
+				}
+			})
+			.option(ChannelOption.SO_BACKLOG, 128)
+			.childOption(ChannelOption.SO_KEEPALIVE, true);
+			LOGGER.info("Listening on port {}.", LOGIN_PORT);
+			b.bind(LOGIN_PORT).sync().channel().closeFuture().sync();
+		} catch (InterruptedException e) {
+			return;
+		} finally {
+			workerGroup.shutdownGracefully();
+			bossGroup.shutdownGracefully();
 		}
 	}
 }
