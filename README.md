@@ -12,16 +12,16 @@ License Information
     Copyright (C) 2014 Jon Huang <project54_jon@live.com>
 
     This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+    it under the terms of the GNU Affero General Public License as
+    published by the Free Software Foundation, either version 3 of the
+    License, or (at your option) any later version.
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+    GNU Affero General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
+    You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 Project Information
@@ -40,6 +40,7 @@ Java-FlyFF requires a JVM compliant with the Java SE 7.0. The Sun JVM can be
 acquired [here](http://java.sun.com/javase/downloads/index.jsp).
 
 You will also need to reference a few libraries:
+
 * [Apache MINA 2.0.7](http://mina.apache.org/downloads-mina.html)
 * [MySQL Connector/J](http://dev.mysql.com/downloads/connector/j/)
 * [Apache DBCP 2.0.1](http://commons.apache.org/proper/commons-dbcp/download_dbcp.cgi)
@@ -51,6 +52,7 @@ You will also need to reference a few libraries:
 * [slf4j 1.7.7](http://www.slf4j.org/download.html)
 
 Libraries to be referenced in the near future:
+
 * [JacORB 1.5](http://www.jacorb.org/download.html)
 * [Google Guava 17.0](https://code.google.com/p/guava-libraries/downloads/list)
 * [Apache Daemon 1.0.15](http://commons.apache.org/proper/commons-daemon/download_daemon.cgi)
