@@ -1,11 +1,10 @@
 Java-FlyFF
 ==========
-FlyFF (Fly for Fun) server emulator in Java.
+FlyFF (Fly for Fun) client and server in Java.
 
 Contributions
 =============
 We LOVE contributions, just submit a pull request and we'll check it out.
-
 
 License Information
 ===================
@@ -26,13 +25,15 @@ License Information
 
 Project Information
 ===================
-Java-Flyff is a FlyFF server emulation programmed in Java and Scala.
-Our primary objective is to produce stable and scalable environment
+Java-Flyff is a long term project with the aim of making FlyFF (both client
+and server) a multiplatform program that can adapt to any environment with
+emphasis on portability on both Windows and Unix platforms.
+Our primary objective is to produce a stable and scalable environment
 for FlyFF similar to the FlyFF program environment done in C++. However,
 our main difference resides in the libraries we use, cross platform support,
 and multiple database support. Primarily for Java-Flyff, we will use MySQL
-for managing the data. However, we will not limit the user from using other
-available database drivers.
+for managing the database backend. However, we will not limit the user from
+using other available database drivers (MariaDB, SQLite, etc.).
 
 Runtime Requirements
 ====================
