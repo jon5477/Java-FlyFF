@@ -5,6 +5,8 @@ FlyFF (Fly for Fun) client and server in Java.
 Contributions
 =============
 We LOVE contributions, just submit a pull request and we'll check it out.
+Please prefer using the Eclipse IDE as that is what the developers on this
+project will typically use.
 
 License Information
 ===================
