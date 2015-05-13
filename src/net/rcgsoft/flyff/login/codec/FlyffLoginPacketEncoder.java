@@ -18,9 +18,12 @@
 
 package net.rcgsoft.flyff.login.codec;
 
+import org.apache.mina.core.buffer.IoBuffer;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.filter.codec.ProtocolEncoder;
 import org.apache.mina.filter.codec.ProtocolEncoderOutput;
+
+import tools.HexTool;
 
 final class FlyffLoginPacketEncoder implements ProtocolEncoder {
 	/*
@@ -47,6 +50,17 @@ final class FlyffLoginPacketEncoder implements ProtocolEncoder {
 		// Include data hash [int]
 		// Command (no clue) [int]
 		// Append existing data
-		
+		if (msg instanceof byte[]) {
+			byte[] src = (byte[]) msg;
+			byte[] output = new byte[src.length + 5];
+			output[0] = 0x5E;
+			output[1] = (byte) (src.length & 0xFF);
+			output[2] = (byte) (src.length >>> 8 & 0xFF);
+			output[3] = (byte) (src.length >>> 16 & 0xFF);
+			output[4] = (byte) (src.length >>> 24 & 0xFF);
+			System.arraycopy(src, 0, output, 5, src.length);
+			System.out.println(HexTool.toString(output));
+			out.write(IoBuffer.wrap(output));
+		}
 	}
 }

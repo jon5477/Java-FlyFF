@@ -32,7 +32,7 @@ import org.slf4j.LoggerFactory;
 public final class LoginServer {
 	private static final LoginServer INSTANCE = new LoginServer();
 	private static final Logger LOGGER = LoggerFactory.getLogger(LoginServer.class);
-	private static final int LOGIN_PORT = 28000; // I hope this is correct.
+	private static final int LOGIN_PORT = 23000; // I hope this is correct.
 	private static SocketAcceptor acceptor;
 
 	private LoginServer() {
@@ -48,7 +48,7 @@ public final class LoginServer {
 		acceptor.getSessionConfig().setTcpNoDelay(true); // Disable Nagle's Algorithm
 		// Close all connections when the SocketAcceptor is deactivated.
 		acceptor.setCloseOnDeactivation(true);
-		acceptor.getFilterChain().addFirst("codec", new ProtocolCodecFilter(new FlyffLoginCodecFactory()));
+		acceptor.getFilterChain().addLast("codec", new ProtocolCodecFilter(new FlyffLoginCodecFactory()));
 		acceptor.setHandler(FlyffLoginServerHandler.getInstance());
 		try {
 			acceptor.bind(new InetSocketAddress(LOGIN_PORT));

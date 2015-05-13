@@ -34,12 +34,16 @@ final class FlyffLoginPacketDecoder extends CumulativeProtocolDecoder {
 	}
 
 	@Override
-	protected boolean doDecode(IoSession session, IoBuffer in, ProtocolDecoderOutput out) throws Exception {
-		if (in.get() != 0x5E) {
+	protected boolean doDecode(IoSession session, IoBuffer buf, ProtocolDecoderOutput out) throws Exception {
+		/*if (in.get() != 0x5E) {
 			// Invalid packet
 			return false;
-		}
+		}*/
 		// TODO Auto-generated method stub
-		return false;
+		int length = buf.remaining();
+		byte[] input = new byte[length];
+		buf.get(input, 0, length);
+		out.write(input);
+		return true;
 	}
 }
